@@ -1,1 +1,8 @@
-<p>todo-list works!</p>
+<h1>Tasks</h1>
+<div *ngIf="todoList.length > 0; else emptyList">
+  <ul>
+    <li *ngFor="let item of todoList">Task: {{item.value.description}} | Priority: {{item.value.priority}} | Due: {{item.value.dueDate}}</li>
+  </ul>
+</div>
+
+<ng-template #emptyList>You have no tasks</ng-template>

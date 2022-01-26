@@ -1,2 +1,4 @@
-<app-todo-form></app-todo-form>
-<app-todo-list></app-todo-list>
+<app-todo-form (onSubmitForm)="updateForm($event)"></app-todo-form>
+<br>
+<br>
+<app-todo-list [todoList]="todoList"></app-todo-list>

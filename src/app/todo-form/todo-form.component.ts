@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -7,7 +7,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./todo-form.component.css']
 })
 export class TodoFormComponent implements OnInit {
-  todoForm!: FormGroup
+  todoForm: FormGroup = <FormGroup>{};
+
+  @Output() onSubmitForm = new EventEmitter<FormGroup>();
 
   constructor(private fb: FormBuilder) {
 
@@ -22,7 +24,9 @@ export class TodoFormComponent implements OnInit {
   }
 
   processTodoForm() {
-
+    //const todo = this.todoForm.value
+    this.onSubmitForm.emit(this.todoForm)
+    this.ngOnInit()
   }
 
 }
