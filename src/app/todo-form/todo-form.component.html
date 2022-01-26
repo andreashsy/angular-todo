@@ -1,13 +1,70 @@
-<h1>ToDo</h1>
+<!-- <h1>ToDo Form</h1>
 <form [formGroup]="todoForm" (ngSubmit)="processTodoForm()">
-  Description: <input type="text" name="description" formControlName="description"><br>
-  Priority:
-  <input type="radio" name="priority" value="high" formControlName="priority"> High
-  <input type="radio" name="priority" value="medium" formControlName="priority"> Medium
-  <input type="radio" name="priority" value="low" formControlName="priority"> Low <br>
-  Due: <input type="date" name="due" formControlName="dueDate"> <br>
-  <button type="submit">
+  <mat-form-field appearance="fill">
+    <mat-label>Description</mat-label>
+    <input type="text" name="description" formControlName="description" placeholder="Please fill in the task description" matInput>
+  </mat-form-field>
+  <br>
+  <mat-radio-group formControlName="priority" aria-label="priority">
+    <mat-label>Priority</mat-label>
+    <br>
+    <mat-radio-button value="high">High</mat-radio-button>
+    <mat-radio-button value="medium">Medium</mat-radio-button>
+    <mat-radio-button value="low">Low</mat-radio-button>
+  </mat-radio-group><br>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Due</mat-label>
+    <input matInput [matDatepicker]="picker" name="due" formControlName="dueDate">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <br>
+
+  <button type="submit" [disabled]="todoForm.invalid" mat-raised-button>
     Send
   </button>
-</form>
+</form> -->
 
+<form [formGroup]="form" (ngSubmit)="addTodo()" #formDirective="ngForm">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Add Todo</mat-card-title>
+      <mat-card-title>Edit Todo</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field>
+        <input matInput formControlName="task"/>
+      </mat-form-field>
+      <div>
+        <label>Priority: &nbsp; </label>
+        <mat-radio-group
+        aria-label="Select an option"
+          formControlName="priority"
+        >
+          <mat-radio-button *ngFor="let p of priorities" value="{{p}}">
+            {{p}} &nbsp; </mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <mat-form-field>
+        <input
+          matInput
+          [matDatepicker] = "picker"
+          formControlName = "dueDate"
+          [min]="tomorrow"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker"
+        >
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Add</button>
+        <button mat-raised-button color="primary" type="button">Update</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</form>

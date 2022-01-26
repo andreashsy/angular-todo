@@ -1,3 +1,33 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>My ToDo App</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="content">
+  <div
+    fxFlexFill
+    fxLayout="row wrap"
+    fxLayout.xs="column wrap"
+    fxLayout.sm="column wrap"
+    fxLayoutGap="15px grid"
+  >
+    <div>
+      <form>
+        <mat-card>
+          <mat-card-header>
+
+          </mat-card-header>
+          <mat-card-content>
+
+          </mat-card-content>
+        </mat-card>
+      </form>
+    </div>
+
+  </div>
+</div>
+
 <app-todo-form (onSubmitForm)="updateForm($event)"></app-todo-form>
 <br>
 <br>

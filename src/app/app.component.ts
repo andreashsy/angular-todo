@@ -7,6 +7,7 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  title = "todo-frontend";
   todoList: FormGroup[] = [];
 
   updateForm(todoItem: FormGroup) {
