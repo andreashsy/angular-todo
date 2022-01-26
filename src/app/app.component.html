@@ -23,6 +23,13 @@
           </mat-card-content>
         </mat-card>
       </form>
+      <mat-card>
+        <mat-card-header>Todo List Card</mat-card-header>
+        <mat-card-content>
+          <span *ngFor="let t of todosValues">{{t.task}} - {{t.dueDate | date:"dd/MM/yyyy"}} - {{t.priority}}</span>
+        </mat-card-content>
+
+      </mat-card>
     </div>
 
   </div>
