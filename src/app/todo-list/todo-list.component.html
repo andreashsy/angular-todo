@@ -1,8 +1,14 @@
-<h1>Tasks</h1>
-<div *ngIf="todoList.length > 0; else emptyList">
-  <ul>
-    <li *ngFor="let item of todoList">Task: {{item.value.description}} | Priority: {{item.value.priority}} | Due: {{item.value.dueDate}}</li>
-  </ul>
-</div>
+<mat-card>
+  <mat-card-header>
+    <h1>Todo List Card</h1>
+  </mat-card-header>
+  <mat-card-content>
+    <div *ngIf="todoValues.length == 0">
+      <span>You have no tasks</span>
+    </div>
+    <ul>
+      <li *ngFor="let t of todoValues">{{t.task}} - {{t.dueDate | date:"dd/MM/yyyy"}} - {{t.priority}}</li>
+    </ul>
+  </mat-card-content>
 
-<ng-template #emptyList>You have no tasks</ng-template>
+</mat-card>

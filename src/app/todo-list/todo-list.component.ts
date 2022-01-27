@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Todo } from '../todo';
 
 @Component({
   selector: 'app-todo-list',
@@ -7,7 +7,7 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent implements OnInit {
-  @Input() todoList: FormGroup[] = [];
+  @Input() todoValues: Todo[] = [];
 
   constructor() { }
 

@@ -4,7 +4,7 @@
   </mat-toolbar-row>
 </mat-toolbar>
 
-<div class="content">
+<!-- <div class="content">
   <div
     fxFlexFill
     fxLayout="row wrap"
@@ -26,16 +26,26 @@
       <mat-card>
         <mat-card-header>Todo List Card</mat-card-header>
         <mat-card-content>
-          <span *ngFor="let t of todosValues">{{t.task}} - {{t.dueDate | date:"dd/MM/yyyy"}} - {{t.priority}}</span>
+          <span *ngFor="let t of todoValues">{{t.task}} - {{t.dueDate | date:"dd/MM/yyyy"}} - {{t.priority}}</span>
         </mat-card-content>
 
       </mat-card>
     </div>
 
   </div>
+</div> -->
+
+<div class="content">
+  <div
+  fxFlexFill
+  fxLayout="row wrap"
+  fxLayout.xs="column wrap"
+  fxLayout.sm="column wrap"
+  fxLayoutGap="15px grid">
+
+    <app-todo-form (onSubmitForm2)="updateForm2($event)" (onSubmitForm)="updateForm($event)"></app-todo-form>
+
+    <app-todo-list [todoValues]="todoValues"></app-todo-list>
+  </div>
 </div>
 
-<app-todo-form (onSubmitForm)="updateForm($event)"></app-todo-form>
-<br>
-<br>
-<app-todo-list [todoList]="todoList"></app-todo-list>

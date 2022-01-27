@@ -17,7 +17,8 @@ export class TodoFormComponent implements OnInit {
   todoValues: Todo[] = [];
   priorities = ["High", "Medium", "Low"];
 
-  @Output() onSubmitForm = new EventEmitter<FormGroup>();
+  @Output() onSubmitForm2 = new EventEmitter<FormGroup>();
+  @Output() onSubmitForm = new EventEmitter<Todo>();
 
   taskFormControl = new FormControl("", [Validators.required]);
   priorityFormControl = new FormControl("", [Validators.required]);
@@ -41,7 +42,7 @@ export class TodoFormComponent implements OnInit {
   }
 
   processTodoForm() {
-    this.onSubmitForm.emit(this.todoForm)
+    this.onSubmitForm2.emit(this.todoForm)
     this.ngOnInit()
   }
 
@@ -54,6 +55,7 @@ export class TodoFormComponent implements OnInit {
       this.form.value.dueDate,
       taskId
     )
+    this.onSubmitForm.emit(singleTodo)
     this.todoValues.push(singleTodo);
 
     this.taskFormControl.reset();
