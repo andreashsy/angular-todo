@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Todo } from '../todo';
 
 @Component({
@@ -8,8 +9,14 @@ import { Todo } from '../todo';
 })
 export class TodoListComponent implements OnInit {
   @Input() todoValues: Todo[] = [];
+  todoArray: FormArray
+  todoForm: FormGroup
 
-  constructor() { }
+  constructor(private fb: FormBuilder) {
+      this.todoArray = this.fb.array([])
+      this.todoForm = this.fb.group({ todos: this.todoArray })
+
+   }
 
   ngOnInit(): void {
   }

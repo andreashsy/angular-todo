@@ -1,14 +1,26 @@
-<mat-card>
-  <mat-card-header>
-    <h1>Todo List Card</h1>
-  </mat-card-header>
-  <mat-card-content>
-    <div *ngIf="todoValues.length == 0">
-      <span>You have no tasks</span>
-    </div>
-    <ul>
-      <li *ngFor="let t of todoValues">{{t.task}} - {{t.dueDate | date:"dd/MM/yyyy"}} - {{t.priority}}</li>
-    </ul>
-  </mat-card-content>
+<div class="content">
+  <mat-card>
+    <mat-card-header>
+      <h1>Todo List</h1>
+    </mat-card-header>
+    <mat-card-content>
+      <div *ngIf="todoValues.length == 0">
+        <span>You have no tasks</span>
+      </div>
+      <form>
+        <div fxLayout="row" fxLayoutAlign="space-around" *ngFor="let t of todoValues
+                                                                  let i = index">
+          <div>
+            <mat-checkbox formControlName="{{t.taskId}}">
+            </mat-checkbox>
+          </div>
+          <div [ngClass]="{'todo-complete': todoValues[i].status}">{{t.task}}</div>
+          <div>{{t.dueDate | date:"dd/MM/yyyy"}}</div>
+          <div>{{t.priority}}</div>
+        </div>
+      </form>
+    </mat-card-content>
 
-</mat-card>
+  </mat-card>
+</div>
+

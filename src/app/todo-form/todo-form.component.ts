@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { forbiddenDateValidator } from '../date-validation.directive';
 import { Todo } from '../todo';
@@ -10,14 +10,12 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./todo-form.component.css']
 })
 export class TodoFormComponent implements OnInit {
-  todoForm: FormGroup = <FormGroup>{};
   form: FormGroup;
   tomorrow = new Date();
   currentDate = new Date();
-  todoValues: Todo[] = [];
+  @Input() todoValues: Todo[] = [];
   priorities = ["High", "Medium", "Low"];
 
-  @Output() onSubmitForm2 = new EventEmitter<FormGroup>();
   @Output() onSubmitForm = new EventEmitter<Todo>();
 
   taskFormControl = new FormControl("", [Validators.required]);
@@ -34,16 +32,6 @@ export class TodoFormComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.todoForm = this.fb.group({
-      description: this.fb.control("", [Validators.required]),
-      priority: this.fb.control("", [Validators.required]),
-      dueDate: this.fb.control("", [Validators.required])
-    })
-  }
-
-  processTodoForm() {
-    this.onSubmitForm2.emit(this.todoForm)
-    this.ngOnInit()
   }
 
   addTodo() {
@@ -56,7 +44,6 @@ export class TodoFormComponent implements OnInit {
       taskId
     )
     this.onSubmitForm.emit(singleTodo)
-    this.todoValues.push(singleTodo);
 
     this.taskFormControl.reset();
     this.dueDateFormControl.reset();
@@ -65,6 +52,4 @@ export class TodoFormComponent implements OnInit {
 
     localStorage.setItem(taskId, JSON.stringify(singleTodo));
   }
-
-
 }
